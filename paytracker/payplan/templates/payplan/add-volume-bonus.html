@@ -1,0 +1,26 @@
+{% extends "payplan/layout.html" %}
+{% block body %}
+<div class="form-group">
+    <form action="{% url 'payplan:volume-bonus' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_volume_bonus">Volume bonus:</label>
+            <input type="number" class="form-control" name="volume_bonus" autofocus required id="id_volume_bonus">
+            <span class="helptext" style="color:rgb(0, 140, 255);">
+                <ul>
+                    <li>Enter total bonus for units sold.</li>
+                    <li>Ex: If you receive $250 for 10 sales and an additional $250 for 12 sales, you would enter $500 for 12 sales.</li>
+                </ul>
+            </span>
+            <br>
+        </div>
+        <div class="mb-3">
+            <label for="id_for_units_sold">For units sold:</label>
+            <input type="number" class="form-control" name="for_units_sold" required id="id_for_units_sold">
+            <br>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    </div>
+{% endblock %}

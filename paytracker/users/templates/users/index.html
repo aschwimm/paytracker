@@ -1,0 +1,34 @@
+{% extends "users/layout.html" %}
+{% block body %}
+{% for entry in account_info %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Account info</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="col">Username</th>
+            <td>{{ entry.username }}</td>
+        </tr>
+        <tr>
+            <th scope="col">First name</th>
+            <td>{{ entry.first_name }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Last name</th>
+            <td>{{ entry.last_name }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Email</th>
+            <td>{{ entry.email }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Store code</th>
+            <td>{{ entry.store_code }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endfor %}
+{% endblock %}

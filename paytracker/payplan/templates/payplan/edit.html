@@ -1,0 +1,35 @@
+{% extends "payplan/layout.html" %}
+{% block body %}
+{% for entry in payplan %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Payplan details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Commission % per sale</th>
+            <td>{{ entry.commission }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Sales required</th>
+            <td>{{ entry.totalsales }}+</td>
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            <td>
+                <form action="{% url 'payplan:update' pk=entry.id %}" method="get">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="btn btn-warning">Edit</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        {{ message }}
+        <a href="{% url 'payplan:add' %}">Add payplan</a>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

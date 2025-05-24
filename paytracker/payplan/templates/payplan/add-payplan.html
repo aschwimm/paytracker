@@ -1,0 +1,11 @@
+{% extends "payplan/layout.html" %}
+{% block body %}
+<div class="form-group">
+<form action="{% url 'payplan:add' %}" method="post">
+    {% csrf_token %}
+    {{ comm_form.as_p }}
+    {{ flat_form.as_p }}
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+</div>
+{% endblock %}

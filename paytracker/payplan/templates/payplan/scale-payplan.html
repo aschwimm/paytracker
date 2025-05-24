@@ -1,0 +1,12 @@
+{% extends "payplan/layout.html" %}
+{% block body %}
+{% for entry in payplan %}
+<h3>{{ entry }}</h3>
+{% endfor %}
+<form action="{% url 'payplan:add-level' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ flat_form.as_p}}
+    <button type="submit" class="btn btn-primary">Add next level</button>
+</form>
+{% endblock %}

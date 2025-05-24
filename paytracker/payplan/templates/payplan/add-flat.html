@@ -1,0 +1,21 @@
+{% extends "payplan/layout.html" %}
+{% block body %}
+<div class="form-group">
+<form action="{% url 'payplan:flat' %}" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="id_flat_amount">Flat amount:</label>
+        <input type="number" class="form-control" name="flat_amount" autofocus required id="id_flat_amount">
+        <br>
+    </div>
+    <div class="mb-3">
+        <label for="id_sales_required">Sales required:</label>
+        <input type="number" class="form-control" name="sales_required" required id="id_sales_required">
+        <br>
+        <span class="helptext" style="color:rgb(0, 140, 255);"><ul><li>If flat does not scale with sales enter 0.</li></ul></span>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+</div>
+{% endblock %}

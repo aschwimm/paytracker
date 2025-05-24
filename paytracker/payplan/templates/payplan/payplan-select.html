@@ -1,0 +1,8 @@
+{% extends "payplan/layout.html" %}
+{% block body %}
+<h1>{{ message }}</h1>
+<a href="{% url 'payplan:add' %}" class="btn btn-primary">Add a payplan or add scaling</a>
+<a href="{% url 'payplan:volume-bonus' %}" class="btn btn-primary">Add a volume bonus</a>
+<a href="{% url 'payplan:flat' %}" class="btn btn-primary">Add a flat payable amount</a>
+<a href="{% url 'payplan:add-level' %}" class="btn btn-primary">Edit payplan</a>
+{% endblock %}

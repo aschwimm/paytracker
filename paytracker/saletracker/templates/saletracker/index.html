@@ -1,0 +1,83 @@
+{% extends "saletracker/layout.html" %}
+{% block body %}
+<form action="{% url 'saletracker:index' %}" method="post" class="mb-3">
+    {% csrf_token %}
+        {{ date }}
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Profit</th>
+                    <th scope="col">Sold By</th>
+                    <th scope="col">Log Date</th>
+                    <th scope="col">Delete Log</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sale in sales %}
+        <tr>
+            <td>${{ sale.profit }}</td>
+            <td>{{ sale.salecredit }}</td>
+            <td>{{ sale.datelogged }}</td>
+            <td>
+                <form action="{% url 'saletracker:log_delete' pk=sale.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            </td>    
+        </tr>
+        {% empty %}
+        <h1>{{ message }}</h1>
+        {% endfor %}
+    </tbody>
+    </table>
+    
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sales Summary</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Total sales</th>
+                <td>{{ total_sold }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Average profit per sale</th>
+                <td>${{ avg_earned }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Number of flats</th>
+                <td>{{ flat_count }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Sum of flats</th>
+                <td>${{ flat_sum }}</td>
+          </tr>
+          <tr>
+              <th scope="row">Commission rate</th>
+              <td>{{ comm_rate }}%</td>
+            </tr>
+            <tr>
+              <th scope="row">Volume bonus</th>
+              <td>${{ bonus }}</td>
+            </tr>
+          <tr>
+            <th scope="row">Total earnings</th>
+            <td>${{ earnings }}</td>
+          </tr>
+        </tbody>
+      </table>
+    <form action="{% url 'saletracker:log' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Log Sale</button>
+    <br>
+    <a href="{% url 'users:logout' %}">Logout</a>
+    <a href="{% url 'saletracker:log' %}">Log sale</a>
+    <a href="{% url 'payplan:index' %}">Edit payplan</a>
+{% endblock %}

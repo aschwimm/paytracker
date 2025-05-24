@@ -1,0 +1,32 @@
+{% extends "payplan/layout.html" %}
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Payplan details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in payplan %}
+        <tr>
+            <th scope="row">Commission % per sale</th>
+            <td>{{ entry.commission }}</td>
+        </tr>
+        <tr>
+        <th scope="row">Sales required</th>
+        <td>{{ entry.totalsales }}</td>
+        </tr>
+    </tbody>
+</table>
+<form action="{% url 'payplan:update' pk=entry.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-success" name="update">Save</button>
+</form>
+<form action="{% url 'payplan:update' pk=entry.id %}" method="post"> 
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger" name="remove">Delete</button>
+</form>   
+{% empty %}
+{% endfor %}
+{% endblock %}

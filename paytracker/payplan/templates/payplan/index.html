@@ -1,0 +1,24 @@
+{% extends "payplan/layout.html" %}
+
+{% block body %}
+    <h1>Payplan</h1>
+    <ul>
+        <h3>
+        {% for i in payplan %}
+        <li>{{ i }}</li>
+        {% endfor %}
+        {% for j in flat %}
+        <li>{{ j }}</li>
+        {% endfor %}
+        {% for k in volume_bonus %}
+        <li>{{ k }}</li>
+        {% endfor %}
+    </h3>
+    </ul>
+    <h5>
+        <a href="{% url 'payplan:add' %}" class="btn btn-primary">Add a payplan or add scaling</a>
+        <a href="{% url 'payplan:volume-bonus' %}" class="btn btn-primary">Add a volume bonus</a>
+        <a href="{% url 'payplan:flat' %}" class="btn btn-primary">Add a flat payable amount</a>
+        <a href="{% url 'payplan:add-level' %}" class="btn btn-primary">Edit payplan</a>
+</h5>
+{% endblock %}

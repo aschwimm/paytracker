@@ -1,0 +1,17 @@
+{% extends "users/layout.html" %}
+{% block title %}Salesheet{% endblock %}
+{% block body %}
+    <h1>Logged in</h1>    
+    <div>This is the salesheet</div>
+    <div>Total sales: ${{ profit }}</div>
+    {% for sale in sales %}
+    <ul>
+        <li>{{ sale }}</li>
+    </ul>
+    {% endfor %}
+    <div>Commission earned: ${{ commission }}</div>
+    <div>Total sales: {{ total_sold }}</div>
+    <div>Average commission per sale: ${{ avg_earned }}</div>
+    <div>Commission rate: {{ comm_rate }}%</div>
+    <a href="{% url 'users:logout' %}">Logout</a>
+{% endblock %}

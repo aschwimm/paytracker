@@ -1,0 +1,21 @@
+{% extends "homepage/layout.html" %}
+{% block body %}
+
+<form action="{% url 'users:register' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="d-grid gap-2" style="text-align: center;">
+        <h1>Introducing <strong>Paytracker</strong>!</h1><br>
+        <div>
+            <h2>Elevate your earnings effortlessly with our intuitive web app.</h2>
+        </div>
+            <div>
+                <h4>
+                <br>Perfect for both seasoned sellers and newcomers, Paytracker simplifies the process of tracking and optimizing your income from successful transactions. Seize control of your financial journey and let Paytracker guide you toward a profit-packed future!
+                </h4>
+                <br>
+                <button type="submit" class="btn btn-success btn-lg">Register</button>
+            </div>
+    </div>
+</form>
+{% endblock %}
